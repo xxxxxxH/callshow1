@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.5.30"
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://artifacts.applovin.com/android' }
+        maven { url "https://anythink.jfrog.io/artifactory/android_sdk" }
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        maven { url "https://android-sdk.is.com/" }
+        maven { url "https://sdk.tapjoy.com/" }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:3.9.11"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://artifacts.applovin.com/android' }
+        maven { url "https://anythink.jfrog.io/artifactory/android_sdk" }
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" }
+        maven { url "https://android-sdk.is.com/" }
+        maven { url "https://sdk.tapjoy.com/" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

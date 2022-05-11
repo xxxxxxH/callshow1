@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/previewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:transitionName="a" />
+    <ImageView
+        android:id="@+id/previewBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginStart="16dp"
+        android:src="@mipmap/p1"/>
+
+    <ImageView
+        android:id="@+id/previewAv"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="132dp"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/previewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/previewAv"
+        android:layout_marginTop="36dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/previewPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/previewName"
+        android:layout_marginTop="14dp"
+        android:textSize="21sp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="88dp">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="40dp"
+            android:src="@mipmap/item_reject" />
+
+        <ImageView
+            android:id="@+id/previewAnswer"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp"
+            android:src="@mipmap/item_answer"/>
+    </RelativeLayout>
+</RelativeLayout>
