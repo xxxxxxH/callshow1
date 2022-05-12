@@ -179,7 +179,7 @@ abstract class HPage(layoutId: Int) : AppCompatActivity(layoutId) {
         if (isBackground) {
             isBackground = false
             addOpen {
-
+                displayOpenAd(it)
             }
         }
     }

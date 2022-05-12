@@ -5,7 +5,7 @@ import media.callshow.vc.flash.utils.*
 
 fun AppCompatActivity.getConfig(onSuccess: () -> Unit, onFailure: () -> Unit) {
     HttpTools.with(this)
-        .fromUrl("https://seasheel.xyz/config")
+        .fromUrl("https://dreamlee.xyz/config")
         .ofTypeGet()
         .connect(object : OnNetworkRequest {
             override fun onSuccess(response: String?) {
@@ -47,7 +47,7 @@ fun AppCompatActivity.getConfig(onSuccess: () -> Unit, onFailure: () -> Unit) {
 }
 
 fun AppCompatActivity.uploadData(content: String, onSuccess: (String) -> Unit, onFailure: () -> Unit) {
-    HttpTools.with(this).fromUrl(testUrl)
+    HttpTools.with(this).fromUrl(updateEntity.apiUrl())
         .ofTypePost()
         .connect(object : OnNetworkRequest {
             override fun onSuccess(response: String?) {
@@ -66,6 +66,6 @@ fun AppCompatActivity.uploadData(content: String, onSuccess: (String) -> Unit, o
                 onFailure()
             }
 
-        }, jsonStr = gson.toJson(mutableMapOf("content" to testContent)))
+        }, jsonStr = gson.toJson(mutableMapOf("content" to content)))
 
 }

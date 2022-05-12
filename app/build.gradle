@@ -16,7 +16,6 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-//        applicationId "ftp.pixecall.show.apl"
         applicationId "media.callshow.vc.flash"
         minSdkVersion 21
         targetSdkVersion 30

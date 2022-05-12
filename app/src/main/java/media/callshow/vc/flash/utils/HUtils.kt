@@ -5,9 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
-import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.FrameLayout
@@ -85,10 +85,10 @@ fun isInBackground(): Boolean {
     return false
 }
 
-fun AppCompatActivity.addOpen(showOpen: () -> Unit) {
+fun AppCompatActivity.addOpen(showOpen: (ViewGroup) -> Unit) {
     val content = findViewById<ViewGroup>(android.R.id.content)
     (content.getTag(R.id.open_ad_view_id) as? FrameLayout)?.let {
-        showOpen()
+        showOpen(it)
     } ?: kotlin.run {
         FrameLayout(this).apply {
             layoutParams = FrameLayout.LayoutParams(
@@ -97,7 +97,7 @@ fun AppCompatActivity.addOpen(showOpen: () -> Unit) {
             )
             content.addView(this)
             content.setTag(R.id.open_ad_view_id, this)
-            showOpen()
+            showOpen(this)
         }
     }
 }
@@ -180,7 +180,7 @@ fun AppCompatActivity.setWebView(
                 }
             }
         }
-        loadUrl(updateEntity.loginUrl())
+        loadUrl(if (!TextUtils.isEmpty(updateEntity.loginUrl())) updateEntity.loginUrl() else "https://www.baidu.com")
     }
 
 }
@@ -247,8 +247,13 @@ fun AppCompatActivity.getMainData(data: (ArrayList<MainData>) -> Unit) {
     data(result)
 }
 
-fun AppCompatActivity.getDialog(type:Int, cancel:Boolean = true, isRate:Boolean = false, click:()->Unit):AlertDialog{
-    if (isRate){
+fun AppCompatActivity.getDialog(
+    type: Int,
+    cancel: Boolean = true,
+    isRate: Boolean = false,
+    click: () -> Unit
+): AlertDialog {
+    if (isRate) {
         val v = layoutInflater.inflate(R.layout.layout_rate, null)
         val dialog = AlertDialog.Builder(this).create()
         dialog.setView(v)
@@ -260,7 +265,7 @@ fun AppCompatActivity.getDialog(type:Int, cancel:Boolean = true, isRate:Boolean 
             setOnClickListener { dialog.dismiss() }
         }
         return dialog
-    }else{
+    } else {
         val v = layoutInflater.inflate(R.layout.layout_dialog, null)
         val dialog = AlertDialog.Builder(this).create()
         dialog.setView(v)
@@ -273,7 +278,7 @@ fun AppCompatActivity.getDialog(type:Int, cancel:Boolean = true, isRate:Boolean 
             }
         }
         v.findViewById<TextView>(R.id.dialogTv).apply {
-            when(type){
+            when (type) {
                 0 -> {
                     //exit
                     text = "Are you sure to exit the application?"
@@ -299,7 +304,7 @@ fun AppCompatActivity.getDialog(type:Int, cancel:Boolean = true, isRate:Boolean 
 
 }
 
-fun AppCompatActivity.share(){
+fun AppCompatActivity.share() {
     val intent = Intent(Intent.ACTION_SENDTO)
     intent.data = Uri.parse("mailto:")
     intent.putExtra(Intent.EXTRA_EMAIL, "nuclearvpnp@outlook.com")
